@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/cifre_1"
+    android:screenOrientation="portrait"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/maxProfitTxt"
+        android:layout_width="165dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:gravity="bottom"
+        android:text="Maximalni profit"
+        android:textAlignment="viewEnd"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/maxProfit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/trenutniProfitTxt" />
+
+    <TextView
+        android:id="@+id/trenutniProfitTxt"
+        android:layout_width="165dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:gravity="bottom"
+        android:text="Trenutni profit"
+        android:textAlignment="viewEnd"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/maxProfitTxt"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/maxVrednostTxt"
+        android:layout_width="189dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:gravity="bottom"
+        android:text="Maximalna vrednost"
+        android:textAlignment="viewEnd"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/trenutniProfitTxt"
+        app:layout_constraintTop_toBottomOf="@+id/trenutnaVrednostTxt" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/cpanime"
+        android:contentDescription="@string/img_piggly"
+        android:src="@drawable/cp1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/skupniVlozekTxt"
+        android:layout_width="165dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="8dp"
+        android:gravity="bottom"
+        android:text="Skupni vložek"
+        android:textAlignment="viewEnd"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/trenutnaVrednostTxt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+    <EditText
+        android:id="@+id/skupniVlozek"
+        style="@style/vnosZneska"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/custom_etxt"
+        android:gravity="bottom"
+        android:importantForAutofill="no"
+        android:textAlignment="center"
+        android:textColor="@color/cifre_1"
+        app:layout_constraintBottom_toBottomOf="@+id/skupniVlozekTxt"
+        app:layout_constraintStart_toEndOf="@+id/skupniVlozekTxt" />
+
+    <EditText
+        android:id="@+id/maxVrednost"
+        style="@style/vnosZneska"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/custom_etxt"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColor="@color/cifre_1"
+        android:textSize="24sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/maxVrednostTxt"
+        app:layout_constraintStart_toEndOf="@+id/maxVrednostTxt" />
+
+    <EditText
+        android:id="@+id/trenutniProfit"
+        style="@style/vnosZneska"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/custom_etxt"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColor="@color/cifre_1"
+        android:textSize="24sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/trenutniProfitTxt"
+        app:layout_constraintStart_toEndOf="@+id/trenutniProfitTxt" />
+
+    <EditText
+        android:id="@+id/maxProfit"
+        style="@style/vnosZneska"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/custom_etxt"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColor="@color/cifre_1"
+        android:textSize="24sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/maxProfitTxt"
+        app:layout_constraintStart_toEndOf="@+id/maxProfitTxt" />
+
+    <EditText
+        android:id="@+id/trenutnaVrednost"
+        style="@style/vnosZneska"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/custom_etxt"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColor="@color/cifre_1"
+        android:textSize="24sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/trenutnaVrednostTxt"
+        app:layout_constraintStart_toEndOf="@+id/trenutnaVrednostTxt" />
+
+    <TextView
+        android:id="@+id/trenutnaVrednostTxt"
+        android:layout_width="165dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:gravity="bottom"
+        android:text="Trenutna vrednost"
+        android:textAlignment="viewEnd"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/maxVrednostTxt"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="187dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="28dp"
+        android:text="Izračunaj"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="379dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/skupniVlozekTxt"
+        app:srcCompat="@drawable/hr1" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="379dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maxVrednostTxt"
+        app:srcCompat="@drawable/hr1" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="379dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maxProfitTxt"
+        app:srcCompat="@drawable/hr1" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="379dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:srcCompat="@drawable/hr1" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
