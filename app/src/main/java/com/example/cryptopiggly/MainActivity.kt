@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         loadData()
 
-        binding.button.setOnClickListener({
+        binding.button.setOnClickListener {
 
             var skvlozek: Int = (binding.skupniVlozek.text).toString().toInt()
             var trvred: Int = (binding.trenutnaVrednost.text).toString().toInt()
@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
 
 
             loadColor()
-
 
             binding.trenutniProfit.setText(profit.toString())
             //binding.imageView.visibility = View.INVISIBLE
@@ -61,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
             saveData()
 
-        })
+        }
 
 
     }
@@ -73,6 +72,7 @@ class MainActivity : AppCompatActivity() {
         val insertedText4: String = binding.trenutniProfit.text.toString()
         val insertedText5: String = binding.maxProfit.text.toString()
         //binding.textView7.text = insertedText
+
 
         val sharedPreferences: SharedPreferences = getSharedPreferences("sharedPref",
             Context.MODE_PRIVATE)
@@ -122,19 +122,24 @@ class MainActivity : AppCompatActivity() {
         if (trvred >= maxvred){
             binding.maxVrednost.setText(trvred.toString())
             binding.trenutnaVrednost.setTextColor(resources.getColor(R.color.cifre_1))
+            binding.trenutnaVrednost.setBackground(resources.getDrawable(R.drawable.custom_etxt))
         }
         else
         {
             binding.trenutnaVrednost.setTextColor(resources.getColor(R.color.cifre_2))
+            binding.trenutnaVrednost.setBackground(resources.getDrawable(R.drawable.custom_etxt_neg))
+
         }
 
         if (profit >= maxprof){
             binding.maxProfit.setText(profit.toString())
             binding.trenutniProfit.setTextColor(resources.getColor(R.color.cifre_1))
+            binding.trenutniProfit.setBackground(resources.getDrawable(R.drawable.custom_etxt))
         }
         else
         {
             binding.trenutniProfit.setTextColor(resources.getColor(R.color.cifre_2))
+            binding.trenutniProfit.setBackground(resources.getDrawable(R.drawable.custom_etxt_neg))
         }
     }
 }

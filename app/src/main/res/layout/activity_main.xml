@@ -8,43 +8,41 @@
     android:screenOrientation="portrait"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/maxProfitTxt"
-        android:layout_width="165dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:gravity="bottom"
-        android:text="Maximalni profit"
-        android:textAlignment="viewEnd"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/maxProfit"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trenutniProfitTxt" />
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/maxProfit"
+        app:layout_constraintStart_toStartOf="@+id/imageView9"
+        app:srcCompat="@drawable/ic_baseline_euro_24" />
 
-    <TextView
-        android:id="@+id/trenutniProfitTxt"
-        android:layout_width="165dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:gravity="bottom"
-        android:text="Trenutni profit"
-        android:textAlignment="viewEnd"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/maxProfitTxt"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/trenutniProfit"
+        app:layout_constraintStart_toStartOf="@+id/imageView8"
+        app:srcCompat="@drawable/ic_baseline_euro_24" />
 
-    <TextView
-        android:id="@+id/maxVrednostTxt"
-        android:layout_width="189dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:gravity="bottom"
-        android:text="Maximalna vrednost"
-        android:textAlignment="viewEnd"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/trenutniProfitTxt"
-        app:layout_constraintTop_toBottomOf="@+id/trenutnaVrednostTxt" />
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/maxVrednost"
+        app:layout_constraintStart_toStartOf="@+id/imageView6"
+        app:srcCompat="@drawable/ic_baseline_euro_24" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/trenutnaVrednost"
+        app:layout_constraintStart_toStartOf="@+id/imageView7"
+        app:srcCompat="@drawable/ic_baseline_euro_24" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -62,32 +60,82 @@
         android:id="@+id/skupniVlozekTxt"
         android:layout_width="165dp"
         android:layout_height="50dp"
-        android:layout_marginStart="48dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:gravity="bottom"
         android:text="Skupni vložek"
         android:textAlignment="viewEnd"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/trenutnaVrednostTxt"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/skupniVlozek"
         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+    <TextView
+        android:id="@+id/trenutnaVrednostTxt"
+        android:layout_width="165dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="bottom"
+        android:text="Trenutna vrednost"
+        android:textAlignment="viewEnd"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/trenutnaVrednost"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/maxVrednostTxt"
+        android:layout_width="195dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="bottom"
+        android:text="Maksimalna vrednost"
+        android:textAlignment="viewEnd"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/maxVrednost"
+        app:layout_constraintTop_toBottomOf="@+id/trenutnaVrednostTxt" />
+
+    <TextView
+        android:id="@+id/trenutniProfitTxt"
+        android:layout_width="165dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="bottom"
+        android:text="Trenutni profit"
+        android:textAlignment="viewEnd"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/trenutniProfit"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/maxProfitTxt"
+        android:layout_width="165dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="bottom"
+        android:text="Maksimalni profit"
+        android:textAlignment="viewEnd"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/maxProfit"
+        app:layout_constraintTop_toBottomOf="@+id/trenutniProfitTxt" />
 
     <EditText
         android:id="@+id/skupniVlozek"
         style="@style/vnosZneska"
-        android:layout_marginStart="24dp"
         android:background="@drawable/custom_etxt"
         android:gravity="bottom"
         android:importantForAutofill="no"
         android:textAlignment="center"
         android:textColor="@color/cifre_1"
         app:layout_constraintBottom_toBottomOf="@+id/skupniVlozekTxt"
-        app:layout_constraintStart_toEndOf="@+id/skupniVlozekTxt" />
+        app:layout_constraintStart_toStartOf="@+id/trenutnaVrednost" />
 
     <EditText
         android:id="@+id/maxVrednost"
         style="@style/vnosZneska"
-        android:layout_marginStart="24dp"
+        android:layout_marginEnd="4dp"
         android:background="@drawable/custom_etxt"
         android:inputType="number"
         android:textAlignment="center"
@@ -95,12 +143,13 @@
         android:textSize="24sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@+id/maxVrednostTxt"
-        app:layout_constraintStart_toEndOf="@+id/maxVrednostTxt" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView8"
+        app:layout_constraintEnd_toStartOf="@+id/imageView8" />
 
     <EditText
         android:id="@+id/trenutniProfit"
         style="@style/vnosZneska"
-        android:layout_marginStart="24dp"
+        android:layout_marginEnd="4dp"
         android:background="@drawable/custom_etxt"
         android:inputType="number"
         android:textAlignment="center"
@@ -108,12 +157,13 @@
         android:textSize="24sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@+id/trenutniProfitTxt"
-        app:layout_constraintStart_toEndOf="@+id/trenutniProfitTxt" />
+        app:layout_constraintEnd_toStartOf="@+id/imageView9"
+        app:layout_constraintStart_toStartOf="@+id/maxProfit" />
 
     <EditText
         android:id="@+id/maxProfit"
         style="@style/vnosZneska"
-        android:layout_marginStart="24dp"
+        android:layout_marginEnd="4dp"
         android:background="@drawable/custom_etxt"
         android:inputType="number"
         android:textAlignment="center"
@@ -121,12 +171,12 @@
         android:textSize="24sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@+id/maxProfitTxt"
-        app:layout_constraintStart_toEndOf="@+id/maxProfitTxt" />
+        app:layout_constraintEnd_toStartOf="@+id/imageView10" />
 
     <EditText
         android:id="@+id/trenutnaVrednost"
         style="@style/vnosZneska"
-        android:layout_marginStart="24dp"
+        android:layout_marginEnd="4dp"
         android:background="@drawable/custom_etxt"
         android:inputType="number"
         android:textAlignment="center"
@@ -134,19 +184,8 @@
         android:textSize="24sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@+id/trenutnaVrednostTxt"
-        app:layout_constraintStart_toEndOf="@+id/trenutnaVrednostTxt" />
-
-    <TextView
-        android:id="@+id/trenutnaVrednostTxt"
-        android:layout_width="165dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:gravity="bottom"
-        android:text="Trenutna vrednost"
-        android:textAlignment="viewEnd"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/maxVrednostTxt"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintEnd_toStartOf="@+id/imageView6"
+        app:layout_constraintStart_toStartOf="@+id/maxVrednost" />
 
     <Button
         android:id="@+id/button"
@@ -208,6 +247,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:srcCompat="@drawable/hr1" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/skupniVlozek"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_euro_24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
