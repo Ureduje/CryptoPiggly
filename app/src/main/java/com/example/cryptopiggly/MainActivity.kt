@@ -4,11 +4,18 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
 import android.graphics.drawable.AnimationDrawable
+import android.icu.text.DecimalFormat
+import android.icu.text.NumberFormat
+import android.icu.util.ULocale
 import android.os.Bundle
+import android.provider.ContactsContract.CommonDataKinds.StructuredPostal.COUNTRY
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cryptopiggly.databinding.ActivityMainBinding
 import java.lang.Boolean.FALSE
+import java.util.*
+import java.util.Locale.FRANCE
+import java.util.Locale.FRENCH
 
 
 class MainActivity : AppCompatActivity() {
@@ -47,10 +54,15 @@ class MainActivity : AppCompatActivity() {
             var profit: Int = trvred - skvlozek
             var maxprof: Int = (binding.maxProfit.text).toString().toInt()
 
+            //val num = 1000
+
+            //binding.edittest.setText(NumberFormat.getNumberInstance(ULocale.ITALY).format(num).toString())
 
             loadColor()
 
-            binding.trenutniProfit.setText(profit.toString())
+
+            binding.trenutniProfit.setText(NumberFormat.getNumberInstance(ULocale.ITALY).format(profit).toString())
+
             //binding.imageView.visibility = View.INVISIBLE
 
             cpAnimation.stop()
@@ -75,7 +87,7 @@ class MainActivity : AppCompatActivity() {
 
 
         val sharedPreferences: SharedPreferences = getSharedPreferences("sharedPref",
-            Context.MODE_PRIVATE)
+                Context.MODE_PRIVATE)
 
         val editor = sharedPreferences.edit()
         editor.apply {
@@ -93,13 +105,16 @@ class MainActivity : AppCompatActivity() {
     private fun loadData(){
 
         val sharedPreferences: SharedPreferences = getSharedPreferences("sharedPref",
-            Context.MODE_PRIVATE)
+                Context.MODE_PRIVATE)
 
         val savedString = sharedPreferences.getString("STRING_KEY", null)
         val savedString2 = sharedPreferences.getString("STRING_KEY_2", null)
         val savedString3 = sharedPreferences.getString("STRING_KEY_3", null)
         val savedString4 = sharedPreferences.getString("STRING_KEY_4", null)
         val savedString5 = sharedPreferences.getString("STRING_KEY_5", null)
+
+
+       // binding.textView.setText(NumberFormat.getNumberInstance(ULocale.ITALY).format(sv2).toString())
 
         binding.skupniVlozek.setText(savedString)
         binding.trenutnaVrednost.setText(savedString2)
