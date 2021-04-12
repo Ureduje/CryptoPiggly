@@ -1,5 +1,6 @@
 package com.example.cryptopiggly
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
@@ -7,13 +8,18 @@ import android.graphics.drawable.AnimationDrawable
 import android.icu.text.DecimalFormat
 import android.icu.text.NumberFormat
 import android.icu.util.ULocale
+import android.os.Build
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal.COUNTRY
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cryptopiggly.databinding.ActivityMainBinding
 import java.lang.Boolean.FALSE
 import java.util.*
+import android.media.MediaPlayer
+import android.view.View
 import java.util.Locale.FRANCE
 import java.util.Locale.FRENCH
 
@@ -24,6 +30,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var img: ImageView
     private lateinit var cpAnimation: AnimationDrawable
 
+    var mMediaPlayer: MediaPlayer? = null
+
+    @SuppressLint("ServiceCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_main)
@@ -53,6 +62,12 @@ class MainActivity : AppCompatActivity() {
             var maxvred: Int = (binding.maxVrednost.text).toString().toInt()
             var profit: Int = trvred - skvlozek
             var maxprof: Int = (binding.maxProfit.text).toString().toInt()
+            val vib = (getSystemService(Context.VIBRATOR_SERVICE) as Vibrator)
+
+
+            vib.vibrate(VibrationEffect.createOneShot(100,3))
+            playSound()
+
 
             //val num = 1000
 
@@ -156,5 +171,13 @@ class MainActivity : AppCompatActivity() {
             binding.trenutniProfit.setTextColor(resources.getColor(R.color.cifre_2))
             binding.trenutniProfit.setBackground(resources.getDrawable(R.drawable.custom_etxt_neg))
         }
+    }
+
+    fun playSound() {
+        if (mMediaPlayer == null) {
+            mMediaPlayer = MediaPlayer.create(this, R.raw.kovanci)
+            mMediaPlayer!!.isLooping = false
+            mMediaPlayer!!.start()
+        } else mMediaPlayer!!.start()
     }
 }

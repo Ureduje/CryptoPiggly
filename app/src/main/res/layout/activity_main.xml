@@ -166,6 +166,7 @@
         android:layout_marginEnd="4dp"
         android:background="@drawable/custom_etxt"
         android:inputType="number"
+        android:onClick="playSound"
         android:textAlignment="center"
         android:textColor="@color/cifre_1"
         android:textSize="24sp"
