@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
 
 
             vib.vibrate(VibrationEffect.createOneShot(100,3))
-            mMediaPlayer!!.stop()
+           // mMediaPlayer!!.stop()
 
             //val num = 1000
 
@@ -211,17 +211,17 @@ class MainActivity : AppCompatActivity() {
 
     fun playSound() {
        // if (mMediaPlayer == null) {
-            mMediaPlayer = MediaPlayer.create(this, R.raw.kovanci)
-            mMediaPlayer!!.isLooping = false
-            mMediaPlayer!!.start()
+        mMediaPlayer = MediaPlayer.create(this, R.raw.kovanci)
+        mMediaPlayer!!.isLooping = false
+        mMediaPlayer!!.start()
       //  } else mMediaPlayer!!.start()
     }
 
     fun playSound2() {
       //  if (mMediaPlayer == null) {
-            mMediaPlayer = MediaPlayer.create(this, R.raw.kitaracp)
-            mMediaPlayer!!.isLooping = false
-            mMediaPlayer!!.start()
+        mMediaPlayer = MediaPlayer.create(this, R.raw.kitaracp)
+        mMediaPlayer!!.isLooping = false
+        mMediaPlayer!!.start()
       //  } else mMediaPlayer!!.start()
     }
 }
