@@ -130,7 +130,8 @@
         android:textAlignment="center"
         android:textColor="@color/cifre_1"
         app:layout_constraintBottom_toBottomOf="@+id/skupniVlozekTxt"
-        app:layout_constraintStart_toStartOf="@+id/trenutnaVrednost" />
+        app:layout_constraintStart_toStartOf="@+id/trenutnaVrednost"
+        android:selectAllOnFocus="true"/>
 
     <EditText
         android:id="@+id/maxVrednost"
@@ -186,7 +187,8 @@
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@+id/trenutnaVrednostTxt"
         app:layout_constraintEnd_toStartOf="@+id/imageView6"
-        app:layout_constraintStart_toStartOf="@+id/maxVrednost" />
+        app:layout_constraintStart_toStartOf="@+id/maxVrednost"
+        android:selectAllOnFocus="true"/>
 
     <Button
         android:id="@+id/button"
@@ -258,14 +260,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/skupniVlozek"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_euro_24" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="23dp"
-        tools:layout_editor_absoluteY="36dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

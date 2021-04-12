@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">Crypto Piggly"</string>
     <string name="img_piggly">Slika Pigglyja</string>
+
+    <!-- Preference Titles -->
+
+    <!-- Messages Preferences -->
+
+    <!-- Sync Preferences -->
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <!-- Strings used for fragments for navigation -->
+
 </resources>

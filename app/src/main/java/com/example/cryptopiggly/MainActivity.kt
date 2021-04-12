@@ -2,6 +2,7 @@ package com.example.cryptopiggly
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
 import android.graphics.drawable.AnimationDrawable
@@ -19,6 +20,7 @@ import com.example.cryptopiggly.databinding.ActivityMainBinding
 import java.lang.Boolean.FALSE
 import java.util.*
 import android.media.MediaPlayer
+import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.view.View
 import java.util.Locale.FRANCE
 import java.util.Locale.FRENCH
@@ -42,7 +44,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        val rocna_maxvred = intent.extras?.getString("key1")
+        val rocni_maxprof = intent.extras?.getString("key2")
 
         binding.maxVrednost.isFocusable = FALSE
         binding.trenutniProfit.isFocusable = FALSE
@@ -54,6 +57,24 @@ class MainActivity : AppCompatActivity() {
         cpAnimation = img.drawable as AnimationDrawable
 
         loadData()
+
+        if (rocna_maxvred!=null) {
+            binding.maxVrednost.setText(rocna_maxvred)
+        }
+
+        if (rocni_maxprof!=null) {
+            binding.maxProfit.setText(rocni_maxprof)
+        }
+
+
+        img.setOnClickListener {
+
+            val settings = Intent(this, SettingsActivity::class.java)
+
+            playSound()
+            startActivity(settings)
+
+        }
 
         binding.button.setOnClickListener {
 
