@@ -62,16 +62,18 @@ class MainActivity : AppCompatActivity() {
             binding.maxVrednost.setText(rocna_maxvred)
         }
 
+
         if (rocni_maxprof!=null) {
             binding.maxProfit.setText(rocni_maxprof)
         }
+
 
 
         img.setOnClickListener {
 
             val settings = Intent(this, SettingsActivity::class.java)
 
-            playSound()
+            //playSound()
             startActivity(settings)
 
         }
@@ -87,14 +89,22 @@ class MainActivity : AppCompatActivity() {
 
 
             vib.vibrate(VibrationEffect.createOneShot(100,3))
-            playSound()
-
+            mMediaPlayer!!.stop()
 
             //val num = 1000
 
             //binding.edittest.setText(NumberFormat.getNumberInstance(ULocale.ITALY).format(num).toString())
 
             loadColor()
+
+            if (trvred >= maxvred) {
+                playSound2()
+            }
+            else
+            {
+                playSound()
+            }
+
 
 
             binding.trenutniProfit.setText(NumberFormat.getNumberInstance(ULocale.ITALY).format(profit).toString())
@@ -107,6 +117,7 @@ class MainActivity : AppCompatActivity() {
 
 
             saveData()
+
 
         }
 
@@ -134,6 +145,8 @@ class MainActivity : AppCompatActivity() {
             putString("STRING_KEY_5", insertedText5)
 
         }.apply()
+
+
 
        // Toast.makeText(this,"Data saved",Toast.LENGTH_SHORT).show()
     }
@@ -174,11 +187,13 @@ class MainActivity : AppCompatActivity() {
             binding.maxVrednost.setText(trvred.toString())
             binding.trenutnaVrednost.setTextColor(resources.getColor(R.color.cifre_1))
             binding.trenutnaVrednost.setBackground(resources.getDrawable(R.drawable.custom_etxt))
+
         }
         else
         {
             binding.trenutnaVrednost.setTextColor(resources.getColor(R.color.cifre_2))
             binding.trenutnaVrednost.setBackground(resources.getDrawable(R.drawable.custom_etxt_neg))
+
 
         }
 
@@ -195,10 +210,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun playSound() {
-        if (mMediaPlayer == null) {
+       // if (mMediaPlayer == null) {
             mMediaPlayer = MediaPlayer.create(this, R.raw.kovanci)
             mMediaPlayer!!.isLooping = false
             mMediaPlayer!!.start()
-        } else mMediaPlayer!!.start()
+      //  } else mMediaPlayer!!.start()
+    }
+
+    fun playSound2() {
+      //  if (mMediaPlayer == null) {
+            mMediaPlayer = MediaPlayer.create(this, R.raw.kitaracp)
+            mMediaPlayer!!.isLooping = false
+            mMediaPlayer!!.start()
+      //  } else mMediaPlayer!!.start()
     }
 }
