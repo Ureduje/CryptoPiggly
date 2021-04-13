@@ -211,6 +211,7 @@ class MainActivity : AppCompatActivity() {
 
     fun playSound() {
        // if (mMediaPlayer == null) {
+        mMediaPlayer?.stop()
         mMediaPlayer = MediaPlayer.create(this, R.raw.kovanci)
         mMediaPlayer!!.isLooping = false
         mMediaPlayer!!.start()
@@ -218,7 +219,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun playSound2() {
-      //  if (mMediaPlayer == null) {
+        //if (mMediaPlayer == null) {
+        mMediaPlayer?.stop()
         mMediaPlayer = MediaPlayer.create(this, R.raw.kitaracp)
         mMediaPlayer!!.isLooping = false
         mMediaPlayer!!.start()
