@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var img: ImageView
+    private lateinit var imgset: ImageView
     private lateinit var cpAnimation: AnimationDrawable
 
     var mMediaPlayer: MediaPlayer? = null
@@ -67,9 +68,10 @@ class MainActivity : AppCompatActivity() {
             binding.maxProfit.setText(rocni_maxprof)
         }
 
+        // Ikonca za nastavitve
+        imgset = binding.settingsIcon
 
-
-        img.setOnClickListener {
+        imgset.setOnClickListener {
 
             val settings = Intent(this, SettingsActivity::class.java)
 
