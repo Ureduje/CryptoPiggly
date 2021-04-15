@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/piggly_bg1"
-    android:backgroundTint="@color/piggly_bg1"
+    android:backgroundTint="@color/piggly_dark_bg"
     android:screenOrientation="portrait"
     tools:context=".MainActivity">
 
@@ -129,7 +129,7 @@
         android:id="@+id/maxVrednostTxt"
         android:layout_width="195dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:gravity="bottom"
         android:text="Maksimalna vrednost"
@@ -157,7 +157,7 @@
         android:id="@+id/maxProfitTxt"
         android:layout_width="165dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:gravity="bottom"
         android:text="Maksimalni profit"
@@ -178,7 +178,7 @@
         android:shadowColor="@color/piggly_dark"
         android:textAlignment="center"
         android:textColor="@color/ic_launcher_background"
-        android:textColorHighlight="@color/cifre_2"
+        android:textColorHighlight="@color/osnovna_1"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="@+id/skupniVlozekTxt"
         app:layout_constraintEnd_toEndOf="parent"
@@ -194,7 +194,8 @@
         android:gravity="center|center_vertical"
         android:inputType="number"
         android:textAlignment="center"
-        android:textColor="@color/cifre_1"
+        android:textColor="@color/piggly_dark_txt"
+        android:textColorHighlight="@color/cifre_2"
         android:textSize="22sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@+id/maxVrednostTxt"
@@ -211,7 +212,8 @@
         android:gravity="center|center_vertical"
         android:inputType="number"
         android:textAlignment="center"
-        android:textColor="@color/cifre_1"
+        android:textColor="@color/piggly_dark_txt"
+        android:textColorHighlight="@color/cifre_2"
         android:textSize="22sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@+id/trenutniProfitTxt"
@@ -228,7 +230,8 @@
         android:gravity="center|center_vertical"
         android:inputType="number"
         android:textAlignment="center"
-        android:textColor="@color/cifre_1"
+        android:textColor="@color/piggly_dark_txt"
+        android:textColorHighlight="@color/cifre_2"
         android:textSize="22sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@+id/maxProfitTxt"
@@ -245,14 +248,12 @@
         android:inputType="number"
         android:selectAllOnFocus="true"
         android:textAlignment="center"
-        android:textColor="@color/cifre_1"
-        android:textColorHighlight="@color/piggly_dark"
-        android:textCursorDrawable="@color/piggly_dark"
+        android:textColor="@color/piggly_dark_txt"
+        android:textColorHighlight="@color/osnovna_1"
         android:textSize="22sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@+id/trenutnaVrednostTxt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/maxVrednost"
         app:layout_constraintTop_toTopOf="@+id/trenutnaVrednostTxt" />
 
     <Button
@@ -334,6 +335,42 @@
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/imgStar"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toEndOf="@+id/trenutnaVrednost"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:srcCompat="@drawable/daco_4154730" />
+
+    <ImageView
+        android:id="@+id/imgStar2"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toEndOf="@+id/trenutnaVrednost"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:srcCompat="@drawable/daco_4154730" />
+
+    <TextView
+        android:id="@+id/razlikaTxt"
+        android:layout_width="120dp"
+        android:layout_height="18dp"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="@+id/trenutnaVrednost"
+        app:layout_constraintTop_toBottomOf="@+id/trenutnaVrednost" />
+
+    <TextView
+        android:id="@+id/razlikaTxt2"
+        android:layout_width="120dp"
+        android:layout_height="18dp"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="@+id/trenutnaVrednost"
+        app:layout_constraintTop_toBottomOf="@+id/trenutniProfit" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

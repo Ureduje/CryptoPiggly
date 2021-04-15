@@ -22,6 +22,9 @@ import java.util.*
 import android.media.MediaPlayer
 import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.view.View
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
+import java.lang.Boolean.TRUE
 import java.util.Locale.FRANCE
 import java.util.Locale.FRENCH
 
@@ -87,6 +90,8 @@ class MainActivity : AppCompatActivity() {
             var maxvred: Int = (binding.maxVrednost.text).toString().toInt()
             var profit: Int = trvred - skvlozek
             var maxprof: Int = (binding.maxProfit.text).toString().toInt()
+            var razlikavred: Int = trvred - maxvred
+            var razlikaprof: Int = profit - maxprof
             val vib = (getSystemService(Context.VIBRATOR_SERVICE) as Vibrator)
 
 
@@ -99,13 +104,21 @@ class MainActivity : AppCompatActivity() {
 
             loadColor()
 
-            if (trvred >= maxvred) {
+
+
+            if ((trvred >= maxvred) or (profit >= maxprof)){
                 playSound2()
+                binding.razlikaTxt.text = "="
+                binding.razlikaTxt2.text = "="
             }
             else
             {
                 playSound()
+                binding.razlikaTxt.text = razlikavred.toString() + " €"
+                binding.razlikaTxt2.text = razlikaprof.toString() + " €"
             }
+
+
 
 
 
@@ -187,27 +200,30 @@ class MainActivity : AppCompatActivity() {
 
         if (trvred >= maxvred){
             binding.maxVrednost.setText(trvred.toString())
-            binding.trenutnaVrednost.setTextColor(resources.getColor(R.color.cifre_1))
+         //   binding.trenutnaVrednost.setTextColor(resources.getColor(R.color.cifre_1))
             binding.trenutnaVrednost.setBackground(resources.getDrawable(R.drawable.custom_etxt))
+            binding.imgStar.visibility = View.VISIBLE
 
         }
         else
         {
-            binding.trenutnaVrednost.setTextColor(resources.getColor(R.color.cifre_2))
+           // binding.trenutnaVrednost.setTextColor(resources.getColor(R.color.cifre_2))
             binding.trenutnaVrednost.setBackground(resources.getDrawable(R.drawable.custom_etxt_neg))
-
+            binding.imgStar.visibility = View.INVISIBLE
 
         }
 
         if (profit >= maxprof){
             binding.maxProfit.setText(profit.toString())
-            binding.trenutniProfit.setTextColor(resources.getColor(R.color.cifre_1))
+            //binding.trenutniProfit.setTextColor(resources.getColor(R.color.cifre_1))
             binding.trenutniProfit.setBackground(resources.getDrawable(R.drawable.custom_etxt))
+            binding.imgStar2.visibility = View.VISIBLE
         }
         else
         {
-            binding.trenutniProfit.setTextColor(resources.getColor(R.color.cifre_2))
+            //binding.trenutniProfit.setTextColor(resources.getColor(R.color.cifre_2))
             binding.trenutniProfit.setBackground(resources.getDrawable(R.drawable.custom_etxt_neg))
+            binding.imgStar2.visibility = View.INVISIBLE
         }
     }
 

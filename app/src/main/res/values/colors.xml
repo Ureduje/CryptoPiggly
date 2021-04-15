@@ -4,5 +4,8 @@
     <color name="cifre_1">#7CB342</color>
     <color name="cifre_2">#e91e63</color>
     <color name="piggly_dark">#263238</color>
+    <color name="piggly_dark_txt">#263238</color>
     <color name="piggly_bg1">#EFEFEF</color>
+    <color name="piggly_bg2">#FFFFFF</color>
+    <color name="piggly_dark_bg">#1A203E00</color>
 </resources>
