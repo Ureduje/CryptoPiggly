@@ -21,12 +21,19 @@ import java.lang.Boolean.FALSE
 import java.util.*
 import android.media.MediaPlayer
 import android.provider.AlarmClock.EXTRA_MESSAGE
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
+import java.io.IOException
 import java.lang.Boolean.TRUE
 import java.util.Locale.FRANCE
 import java.util.Locale.FRENCH
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -48,6 +55,30 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.trenutnaVrednost.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
+
+                //Perform Code
+                binding.imageView.callOnClick()
+                closeKeyboard(binding.trenutnaVrednost)
+                datumInUra()
+                return@OnKeyListener true
+            }
+            false
+        })
+
+        binding.shareIcon.setOnClickListener {
+
+            Toast.makeText(this, "Deli", Toast. LENGTH_SHORT).show()
+        }
+
+        binding.settingsIcon.setOnClickListener {
+
+            Toast.makeText(this, "Nastavitve", Toast. LENGTH_SHORT).show()
+        }
+
+
+
         val rocna_maxvred = intent.extras?.getString("key1")
         val rocni_maxprof = intent.extras?.getString("key2")
 
@@ -60,7 +91,10 @@ class MainActivity : AppCompatActivity() {
         img.setImageResource(R.drawable.cpanime)
         cpAnimation = img.drawable as AnimationDrawable
 
+
         loadData()
+
+
 
         if (rocna_maxvred!=null) {
             binding.maxVrednost.setText(rocna_maxvred)
@@ -72,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Ikonca za nastavitve
-        imgset = binding.settingsIcon
+        imgset = binding.manualEdit
 
         imgset.setOnClickListener {
 
@@ -83,7 +117,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        binding.button.setOnClickListener {
+        binding.imageView.setOnClickListener {
 
             var skvlozek: Int = (binding.skupniVlozek.text).toString().toInt()
             var trvred: Int = (binding.trenutnaVrednost.text).toString().toInt()
@@ -96,13 +130,11 @@ class MainActivity : AppCompatActivity() {
 
 
             vib.vibrate(VibrationEffect.createOneShot(100,3))
-           // mMediaPlayer!!.stop()
 
-            //val num = 1000
 
-            //binding.edittest.setText(NumberFormat.getNumberInstance(ULocale.ITALY).format(num).toString())
-
-            loadColor()
+            binding.trenutniProfit.setText(profit.toString())
+            datumInUra()
+            rekord()
 
 
 
@@ -118,11 +150,6 @@ class MainActivity : AppCompatActivity() {
                 binding.razlikaTxt2.text = razlikaprof.toString() + " €"
             }
 
-
-
-
-
-            binding.trenutniProfit.setText(NumberFormat.getNumberInstance(ULocale.ITALY).format(profit).toString())
 
             //binding.imageView.visibility = View.INVISIBLE
 
@@ -140,12 +167,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun saveData(){
-        val insertedText: String = binding.skupniVlozek.text.toString()
-        val insertedText2: String = binding.trenutnaVrednost.text.toString()
-        val insertedText3: String = binding.maxVrednost.text.toString()
-        val insertedText4: String = binding.trenutniProfit.text.toString()
-        val insertedText5: String = binding.maxProfit.text.toString()
+        var skvlozek: Int = (binding.skupniVlozek.text).toString().toInt()
+        val insertedText: String = skvlozek.toString()
+
+        var trvred: Int = (binding.trenutnaVrednost.text).toString().toInt()
+        val insertedText2: String = trvred.toString()
+
+        var maxvred: Int = (binding.maxVrednost.text).toString().toInt()
+        val insertedText3: String = maxvred.toString()
+
+        var profit: Int = trvred - skvlozek
+        val insertedText4: String = profit.toString()
+
+        var maxprof: Int = (binding.maxProfit.text).toString().toInt()
+        val insertedText5: String = maxprof.toString()
         //binding.textView7.text = insertedText
+
+        var diu:String = (binding.Osvezeno.text).toString()
+        val insertedText6:String = diu.toString()
 
 
         val sharedPreferences: SharedPreferences = getSharedPreferences("sharedPref",
@@ -158,6 +197,7 @@ class MainActivity : AppCompatActivity() {
             putString("STRING_KEY_3", insertedText3)
             putString("STRING_KEY_4", insertedText4)
             putString("STRING_KEY_5", insertedText5)
+            putString("STRING_KEY_6", insertedText6)
 
         }.apply()
 
@@ -176,21 +216,22 @@ class MainActivity : AppCompatActivity() {
         val savedString3 = sharedPreferences.getString("STRING_KEY_3", null)
         val savedString4 = sharedPreferences.getString("STRING_KEY_4", null)
         val savedString5 = sharedPreferences.getString("STRING_KEY_5", null)
+        val savedString6 = sharedPreferences.getString("STRING_KEY_6", null)
 
 
-       // binding.textView.setText(NumberFormat.getNumberInstance(ULocale.ITALY).format(sv2).toString())
 
-        binding.skupniVlozek.setText(savedString)
-        binding.trenutnaVrednost.setText(savedString2)
-        binding.maxVrednost.setText(savedString3)
-        binding.trenutniProfit.setText(savedString4)
-        binding.maxProfit.setText(savedString5)
+        binding.skupniVlozek.setText(savedString).toString()
+        binding.trenutnaVrednost.setText(savedString2).toString()
+        binding.maxVrednost.setText(savedString3).toString()
+        binding.trenutniProfit.setText(savedString4).toString()
+        binding.maxProfit.setText(savedString5).toString()
+        binding.Osvezeno.setText(savedString6).toString()
 
-        loadColor()
+        rekord()
 
     }
 
-    private fun loadColor(){
+    private fun rekord(){
 
         var skvlozek: Int = (binding.skupniVlozek.text).toString().toInt()
         var trvred: Int = (binding.trenutnaVrednost.text).toString().toInt()
@@ -244,4 +285,23 @@ class MainActivity : AppCompatActivity() {
         mMediaPlayer!!.start()
       //  } else mMediaPlayer!!.start()
     }
+
+    private fun closeKeyboard(view: View) {
+        val imm= getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    fun datumInUra() {
+
+        val current = LocalDateTime.now()
+
+        val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss")
+        val formatted = current.format(formatter)
+
+        binding.Osvezeno.text = "Nazadnje osveženo: " + formatted.toString()
+       // Toast.makeText(this, formatted, Toast.LENGTH_SHORT).show()
+       // println("Current Date and Time is: $formatted")
+    }
+
+
 }
