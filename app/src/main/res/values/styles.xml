@@ -2,19 +2,20 @@
 <resources>
 
     <style name="vnosZneska">
-        <item name="android:layout_width">120dp</item>
+        <item name="android:layout_width">130dp</item>
         <item name="android:layout_height">34dp</item>
-        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
         <item name="android:autofillHints"></item>
         <item name="android:ems">24</item>
         <item name="android:inputType">number</item>
         <item name="android:outlineAmbientShadowColor">#DCEDC8</item>
         <item name="android:outlineSpotShadowColor">#DCEDC8</item>
-        <item name="android:shadowColor">#DCEDC8</item>
+        <item name="android:shadowColor">#D6D6D6</item>
         <item name="android:textSize">24sp</item>
+        <item name="android:textColorHighlight">@color/piggly_dark_bg</item>
+        <item name="android:textColor">@color/piggly_dark_txt</item>
+        <item name="android:selectAllOnFocus">true</item>
     </style>
-
-
 
 
 </resources>

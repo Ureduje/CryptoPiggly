@@ -5,57 +5,50 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
+import android.graphics.Color
 import android.graphics.drawable.AnimationDrawable
-import android.icu.text.DecimalFormat
-import android.icu.text.NumberFormat
-import android.icu.util.ULocale
-import android.os.Build
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.provider.ContactsContract.CommonDataKinds.StructuredPostal.COUNTRY
-import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
-import com.example.cryptopiggly.databinding.ActivityMainBinding
-import java.lang.Boolean.FALSE
-import java.util.*
-import android.media.MediaPlayer
-import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import android.widget.Toast
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
-import java.io.IOException
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.example.cryptopiggly.databinding.ActivityMainBinding
+import java.lang.Boolean.FALSE
 import java.lang.Boolean.TRUE
-import java.util.Locale.FRANCE
-import java.util.Locale.FRENCH
+import java.security.AccessController.getContext
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var img: ImageView
-    private lateinit var imgset: ImageView
+    private lateinit var manualedit_btn: ImageView
     private lateinit var cpAnimation: AnimationDrawable
 
     var mMediaPlayer: MediaPlayer? = null
 
-    @SuppressLint("ServiceCast")
+    @SuppressLint("ServiceCast", "ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_main)
+
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.trenutnaVrednost.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+
+        binding.trenutnaVrednost.setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
 
                 //Perform Code
@@ -75,6 +68,7 @@ class MainActivity : AppCompatActivity() {
         binding.settingsIcon.setOnClickListener {
 
             Toast.makeText(this, "Nastavitve", Toast. LENGTH_SHORT).show()
+
         }
 
 
@@ -82,9 +76,9 @@ class MainActivity : AppCompatActivity() {
         val rocna_maxvred = intent.extras?.getString("key1")
         val rocni_maxprof = intent.extras?.getString("key2")
 
-        binding.maxVrednost.isFocusable = FALSE
-        binding.trenutniProfit.isFocusable = FALSE
-        binding.maxProfit.isFocusable = FALSE
+        //binding.maxVrednost.isFocusable = FALSE
+        //binding.trenutniProfit.isFocusable = FALSE
+        //binding.maxProfit.isFocusable = FALSE
 
 
         img = binding.imageView
@@ -106,14 +100,63 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Ikonca za nastavitve
-        imgset = binding.manualEdit
+        manualedit_btn = binding.manualEdit
 
-        imgset.setOnClickListener {
+        manualedit_btn.setOnClickListener {
 
-            val settings = Intent(this, SettingsActivity::class.java)
+            //val settings = Intent(this, SettingsActivity::class.java)
+            //startActivity(settings)
 
-            //playSound()
-            startActivity(settings)
+            if (binding.maxVrednost.isFocusable == TRUE) {
+                manualedit_btn.clearColorFilter()
+
+                binding.skupniVlozek.setBackgroundResource(R.drawable.custom_etxt)
+                binding.skupniVlozek.isFocusableInTouchMode = FALSE
+                binding.skupniVlozek.isFocusable = FALSE
+
+                binding.trenutnaVrednost.setBackgroundResource(R.drawable.custom_etxt_input)
+
+
+                binding.maxVrednost.setBackgroundResource(R.drawable.custom_etxt)
+                binding.maxVrednost.isFocusableInTouchMode = FALSE
+                binding.maxVrednost.isFocusable = FALSE
+
+                binding.trenutniProfit.setBackgroundResource(R.drawable.custom_etxt)
+                binding.trenutniProfit.isFocusableInTouchMode = FALSE
+                binding.trenutniProfit.isFocusable = FALSE
+
+                binding.maxProfit.setBackgroundResource(R.drawable.custom_etxt)
+                binding.maxProfit.isFocusableInTouchMode = FALSE
+                binding.maxProfit.isFocusable = FALSE
+            }
+            else
+            {
+                manualedit_btn.setColorFilter(ContextCompat.getColor(this, R.color.cifre_2), android.graphics.PorterDuff.Mode.MULTIPLY)
+
+                binding.skupniVlozek.setBackgroundResource(R.drawable.custom_etxt_edit)
+                binding.skupniVlozek.isFocusableInTouchMode = TRUE
+                binding.skupniVlozek.isFocusable = TRUE
+
+                binding.trenutnaVrednost.setBackgroundResource(R.drawable.custom_etxt_edit)
+
+
+                binding.maxVrednost.setBackgroundResource(R.drawable.custom_etxt_edit)
+                binding.maxVrednost.isFocusableInTouchMode = TRUE
+                binding.maxVrednost.isFocusable = TRUE
+
+                binding.trenutniProfit.setBackgroundResource(R.drawable.custom_etxt_edit)
+                binding.trenutniProfit.isFocusableInTouchMode = TRUE
+                binding.trenutniProfit.isFocusable = TRUE
+
+                binding.maxProfit.setBackgroundResource(R.drawable.custom_etxt_edit)
+                binding.maxProfit.isFocusableInTouchMode = TRUE
+                binding.maxProfit.isFocusable = TRUE
+
+            }
+
+
+
+
 
         }
 
@@ -135,6 +178,7 @@ class MainActivity : AppCompatActivity() {
             binding.trenutniProfit.setText(profit.toString())
             datumInUra()
             rekord()
+            closeKeyboard(binding.trenutnaVrednost)
 
 
 
@@ -242,14 +286,14 @@ class MainActivity : AppCompatActivity() {
         if (trvred >= maxvred){
             binding.maxVrednost.setText(trvred.toString())
          //   binding.trenutnaVrednost.setTextColor(resources.getColor(R.color.cifre_1))
-            binding.trenutnaVrednost.setBackground(resources.getDrawable(R.drawable.custom_etxt))
+            //binding.trenutnaVrednost.setBackground(resources.getDrawable(R.drawable.custom_etxt))
             binding.imgStar.visibility = View.VISIBLE
 
         }
         else
         {
            // binding.trenutnaVrednost.setTextColor(resources.getColor(R.color.cifre_2))
-            binding.trenutnaVrednost.setBackground(resources.getDrawable(R.drawable.custom_etxt_neg))
+           // binding.trenutnaVrednost.setBackground(resources.getDrawable(R.drawable.custom_etxt))
             binding.imgStar.visibility = View.INVISIBLE
 
         }
@@ -257,13 +301,13 @@ class MainActivity : AppCompatActivity() {
         if (profit >= maxprof){
             binding.maxProfit.setText(profit.toString())
             //binding.trenutniProfit.setTextColor(resources.getColor(R.color.cifre_1))
-            binding.trenutniProfit.setBackground(resources.getDrawable(R.drawable.custom_etxt))
+           // binding.trenutniProfit.setBackground(resources.getDrawable(R.drawable.custom_etxt))
             binding.imgStar2.visibility = View.VISIBLE
         }
         else
         {
             //binding.trenutniProfit.setTextColor(resources.getColor(R.color.cifre_2))
-            binding.trenutniProfit.setBackground(resources.getDrawable(R.drawable.custom_etxt_neg))
+           // binding.trenutniProfit.setBackground(resources.getDrawable(R.drawable.custom_etxt))
             binding.imgStar2.visibility = View.INVISIBLE
         }
     }
