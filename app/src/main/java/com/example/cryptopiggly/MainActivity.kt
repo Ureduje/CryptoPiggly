@@ -324,7 +324,7 @@ class MainActivity : AppCompatActivity() {
     fun playSound2() {
         //if (mMediaPlayer == null) {
         mMediaPlayer?.stop()
-        mMediaPlayer = MediaPlayer.create(this, R.raw.kitaracp)
+        mMediaPlayer = MediaPlayer.create(this, R.raw.cp_rekord_1)
         mMediaPlayer!!.isLooping = false
         mMediaPlayer!!.start()
       //  } else mMediaPlayer!!.start()
